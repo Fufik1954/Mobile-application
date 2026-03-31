@@ -31,19 +31,14 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        // Проверка на разрешение
         if (ContextCompat.checkSelfPermission(this, POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
             Log.d(MainActivity.class.getSimpleName().toString(), "Разрешения получены");
         } else {
             Log.d(MainActivity.class.getSimpleName().toString(), "Нет разрешений!");
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, PermissionCode);
-
-            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-    }}
+        };
+    }
     public void onClickSendNotification(View view) {
         // Проверяем разрешение перед показом уведомления
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -61,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         .bigText("Much longer text that cannot fit one line..."))
                 .setContentTitle("Mirea");
 
+        // Канал уведомления (категория для уведомлений)
         int importance = NotificationManager.IMPORTANCE_DEFAULT;
         NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Картышов Артём Вячеславович Notification", importance);
                 channel.setDescription("MIREA Channel");

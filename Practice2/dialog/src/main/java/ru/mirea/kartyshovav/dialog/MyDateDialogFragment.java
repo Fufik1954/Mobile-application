@@ -26,7 +26,6 @@ public class MyDateDialogFragment extends DialogFragment {
         return new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                // Показываем Toast с выбранной датой
                 String date = dayOfMonth + "." + (month + 1) + "." + year;
                 Toast.makeText(getActivity(), "Выбрана дата: " + date, Toast.LENGTH_LONG).show();
             }

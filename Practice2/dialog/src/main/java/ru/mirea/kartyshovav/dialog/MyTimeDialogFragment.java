@@ -25,7 +25,6 @@ public class MyTimeDialogFragment extends DialogFragment {
         return new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                // Показываем Toast с выбранным временем
                 String time = hourOfDay + ":" + String.format("%02d", minute);
                 Toast.makeText(getActivity(), "Выбрано время: " + time, Toast.LENGTH_LONG).show();
             }
