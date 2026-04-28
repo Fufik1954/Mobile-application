@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0A0E27"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Фоновая задача"
+        android:textColor="#FFD700"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Нажмите на кнопку, чтобы запустить фоновую задачу через WorkManager"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/btnStartTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Запустить задачу"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Статус: ожидание"
+        android:textColor="#B0B0B0"
+        android:padding="12dp"
+        android:background="#1A1A3E" />
+
+</LinearLayout>
