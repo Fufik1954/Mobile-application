@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.work.Constraints;
+import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
@@ -30,19 +32,18 @@ public class TaskFragment extends Fragment {
         btnStartTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvStatus.setText("Статус: задача запущена... (смотрите Logcat)");
+                tvStatus.setText("Задача запущена");
 
+                // Условия
+                Constraints constraints = new Constraints.Builder()
+                        .setRequiredNetworkType(NetworkType.CONNECTED)
+                        .build();
+
+                // Запуск задачи
                 WorkRequest workRequest = new OneTimeWorkRequest.Builder(MySimpleWorker.class)
+                        .setConstraints(constraints)
                         .build();
                 WorkManager.getInstance(requireContext()).enqueue(workRequest);
-
-                // Обновим статус через 4 секунды
-                view.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        tvStatus.setText("Статус: задача завершена (см. Logcat)");
-                    }
-                }, 4000);
             }
         });
 
