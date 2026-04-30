@@ -1,4 +1,4 @@
-package ru.mirea.kartyshovav.thread;
+package ru.mirea.kartyshovav.TwoThread;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +12,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Arrays;
 
-import ru.mirea.kartyshovav.thread.databinding.ActivityMainBinding;
+import ru.mirea.kartyshovav.TwoThread.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,19 +29,11 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Часть 1
+        // Получаем главный поток
         Thread mainThread = Thread.currentThread();
-
-        // Выводим имя текущего потока
         binding.textViewThreadInfo.setText("Имя текущего потока: " + mainThread.getName());
-
-        // Меняем имя потока
         mainThread.setName("ГРУППА: БСБО-09-23, НОМЕР ПО СПИСКУ: 9, МОЙ ЛЮБИМЫЙ ФИЛЬМ: Интерстеллар");
-
-        // Выводим новое имя
         binding.textViewThreadInfo.append("\nНовое имя потока: " + mainThread.getName());
-
-        // Выводим приоритет
         binding.textViewThreadInfo.append("\nПриоритет потока: " + mainThread.getPriority());
 
         // Выводим стек вызовов в Logcat
@@ -49,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         binding.btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Thread — класс для управления любыми потоками
+                // Runnable — интерфейс с методом, в котором пишем задачу
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

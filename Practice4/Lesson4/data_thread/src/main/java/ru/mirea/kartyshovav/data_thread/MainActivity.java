@@ -27,19 +27,19 @@ public class MainActivity extends AppCompatActivity {
 
         final Runnable runn1 = new Runnable() {
             public void run() {
-                binding.tvInfo.setText("runn1 (runOnUiThread, через 2 сек)");
+                binding.tvInfo.setText("runn1");
             }
         };
 
         final Runnable runn2 = new Runnable() {
             public void run() {
-                binding.tvInfo.setText("runn2 (post, сразу после runn3)");
+                binding.tvInfo.setText("runn2");
             }
         };
 
         final Runnable runn3 = new Runnable() {
             public void run() {
-                binding.tvInfo.setText("runn3 (postDelayed, задержка 2 сек)");
+                binding.tvInfo.setText("runn3");
             }
         };
 
@@ -47,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     TimeUnit.SECONDS.sleep(2);
-                    runOnUiThread(runn1);
+                    runOnUiThread(runn1); // В главном потоке
 
                     TimeUnit.SECONDS.sleep(1);
-                    binding.tvInfo.postDelayed(runn3, 2000);
-                    binding.tvInfo.post(runn2);
+                    binding.tvInfo.postDelayed(runn3, 2000); // С задержкой
+                    binding.tvInfo.post(runn2); // Отправляет задачу в очередь главного потока
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();

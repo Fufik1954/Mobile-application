@@ -23,8 +23,8 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Lesson4"
-include(":app")
-include(":thread")
+include(":App")
+include(":TwoThread")
 include(":data_thread")
 include(":looper")
 include(":cryptoloader")

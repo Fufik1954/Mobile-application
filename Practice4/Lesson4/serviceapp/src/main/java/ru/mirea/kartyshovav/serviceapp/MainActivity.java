@@ -43,23 +43,19 @@ public class MainActivity extends AppCompatActivity {
                     PermissionCode);
         }
 
-        // Кнопка PLAY - запуск сервиса
         binding.buttonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent serviceIntent = new Intent(MainActivity.this, PlayerService.class);
-                ContextCompat.startForegroundService(MainActivity.this, serviceIntent);
-                Log.d("ServiceApp", "Сервис запущен");
+                ContextCompat.startForegroundService(MainActivity.this, serviceIntent); // Сервис с уведомлением
             }
         });
 
-        // Кнопка STOP - остановка сервиса
         binding.buttonStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent serviceIntent = new Intent(MainActivity.this, PlayerService.class);
                 stopService(serviceIntent);
-                Log.d("ServiceApp", "Сервис остановлен");
             }
         });
 

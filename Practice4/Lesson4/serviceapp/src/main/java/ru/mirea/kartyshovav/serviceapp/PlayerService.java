@@ -10,9 +10,10 @@ import android.os.IBinder;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+// Сервис - компонент для фоновой работы без UI
 public class PlayerService extends Service {
 
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer; // Объкт воспроизведения
     public static final String CHANNEL_ID = "ForegroundServiceChannel";
 
     @Override
@@ -21,26 +22,28 @@ public class PlayerService extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    // Вызывается при каждом запуске сервиса
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         mediaPlayer.start();
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() { // Если трек закончился
             @Override
             public void onCompletion(MediaPlayer mp) {
                 stopForeground(true);
                 stopSelf();
             }
         });
-        return super.onStartCommand(intent, flags, startId);
+        return super.onStartCommand(intent, flags, startId); // Возвращаем стандартное поведение
     }
 
+    // Инициализация
     @Override
     public void onCreate() {
         super.onCreate();
 
         // Создание уведомления
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentText("Playing....")
+                .setContentText("Playing...")
                 .setSmallIcon(android.R.drawable.ic_media_play)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setStyle(new NotificationCompat.BigTextStyle()
@@ -56,11 +59,12 @@ public class PlayerService extends Service {
 
         startForeground(1, builder.build());
 
-        // Инициализация MediaPlayer
+        // Инициализация плеера
         mediaPlayer = MediaPlayer.create(this, R.raw.brawl);
         mediaPlayer.setLooping(false);
     }
 
+    // Остановка сервиса
     @Override
     public void onDestroy() {
         stopForeground(true);

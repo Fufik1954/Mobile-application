@@ -15,6 +15,7 @@ public class MyLoader extends AsyncTaskLoader<String> {
     private byte[] cryptText;
     private byte[] keyBytes;
 
+    // Извлекаем текст и ключ
     public MyLoader(@NonNull Context context, Bundle args) {
         super(context);
         if (args != null) {
@@ -26,12 +27,12 @@ public class MyLoader extends AsyncTaskLoader<String> {
     @Override
     protected void onStartLoading() {
         super.onStartLoading();
-        forceLoad();
+        forceLoad(); // Метод, который запускает фоновую загрузку
     }
 
     @Override
     public String loadInBackground() {
-        // Восстановление ключа
+        // Восстановление ключа (создаём ключ из массива байтов)
         SecretKey originalKey = new SecretKeySpec(keyBytes, 0, keyBytes.length, "AES");
 
         // Дешифрование

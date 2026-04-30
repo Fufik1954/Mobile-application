@@ -7,6 +7,7 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 import java.util.concurrent.TimeUnit;
 
+// WorkManager — библиотека для выполнения отложенных фоновых задач, которые выполнятся, даже если приложение закрыто
 public class UploadWorker extends Worker {
     static final String TAG = "UploadWorker";
 
@@ -20,14 +21,13 @@ public class UploadWorker extends Worker {
     public Result doWork() {
         Log.d(TAG, "doWork: start");
         try {
-            // Имитация длительной работы (10 секунд)
+            // Имитация длительной работы
             TimeUnit.SECONDS.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
             return Result.failure();
         }
         Log.d(TAG, "doWork: end");
-        // Успешное завершение работы
         return Result.success();
     }
 }

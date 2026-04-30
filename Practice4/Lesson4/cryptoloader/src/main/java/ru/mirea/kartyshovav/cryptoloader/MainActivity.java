@@ -35,11 +35,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        // Устанавливаем текст
         binding.editTextMirea.setText("Мой номер по списку №9");
 
-        // Обработчик кнопки (как в методичке)
         binding.buttonMirea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,10 +54,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 byte[] encryptedData = AESHelper.encryptMsg(text, key);
 
                 // Отправка данных в Loader
+                // Loader — компонент, который позволяет загружать данные в фоновом потоке
                 Bundle bundle = new Bundle();
                 bundle.putByteArray(MyLoader.ARG_WORD, encryptedData);
                 bundle.putByteArray("key", key.getEncoded());
 
+                // Получаем экземпляр менеджера загрузчика и создаем загрузчик
                 LoaderManager.getInstance(MainActivity.this).initLoader(LoaderID, bundle, MainActivity.this);
 
                 Toast.makeText(MainActivity.this, "onCreateLoader: " + LoaderID, Toast.LENGTH_SHORT).show();
@@ -74,26 +73,29 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
     }
 
-        @NonNull
-        @Override
-        public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
-            if (id == LoaderID) {
-                Toast.makeText(this, "onCreateLoader: " + id, Toast.LENGTH_SHORT).show();
-                return new MyLoader(this, args);
-            }
-            throw new InvalidParameterException("Invalid loader id");
+    // Создаем загрузчик
+    @NonNull
+    @Override
+    public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
+        if (id == LoaderID) {
+            Toast.makeText(this, "onCreateLoader: " + id, Toast.LENGTH_SHORT).show();
+            return new MyLoader(this, args);
         }
+        throw new InvalidParameterException("Invalid loader id");
+    }
 
-        @Override
-        public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-            if (loader.getId() == LoaderID) {
-                Log.d(TAG, "onLoadFinished: " + data);
-                Toast.makeText(this, "onLoadFinished: " + data, Toast.LENGTH_LONG).show();
-            }
+    // Получение результата
+    @Override
+    public void onLoadFinished(@NonNull Loader<String> loader, String data) {
+        if (loader.getId() == LoaderID) {
+            Log.d(TAG, "onLoadFinished: " + data);
+            Toast.makeText(this, "onLoadFinished: " + data, Toast.LENGTH_LONG).show();
         }
+    }
 
-        @Override
-        public void onLoaderReset(@NonNull Loader<String> loader) {
+    // Сброс загрузчика
+    @Override
+    public void onLoaderReset(@NonNull Loader<String> loader) {
             Log.d(TAG, "onLoaderReset");
         }
 }

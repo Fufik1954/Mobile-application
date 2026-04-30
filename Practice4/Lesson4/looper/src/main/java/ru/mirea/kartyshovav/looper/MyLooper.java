@@ -9,20 +9,21 @@ public class MyLooper extends Thread{
     public Handler mHandler;
     private Handler mainHandler;
 
+    // Сохраняем Handler главного потока, чтобы потом отправить результат обратно
     public MyLooper(Handler mainThreadHandler) {
         mainHandler = mainThreadHandler;
     }
 
+    // Точка входа в поток
     public void run() {
         Log.d("MyLooper", "run");
-        Looper.prepare();
+        Looper.prepare(); // Создаем очередь сообщений
 
         mHandler = new Handler(Looper.myLooper()) {
             public void handleMessage(Message msg) {
                 String data = msg.getData().getString("KEY");
                 Log.d("MyLooper get message: ", data);
 
-                // Имитация задержки = возраст в секундах
                 // Возраст передаётся в KEY в формате "возраст|работа"
                 String[] parts = data.split("\\|");
                 String age = parts[0];

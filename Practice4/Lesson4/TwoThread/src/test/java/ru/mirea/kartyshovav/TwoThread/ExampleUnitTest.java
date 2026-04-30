@@ -1,4 +1,4 @@
-package ru.mirea.kartyshovav.thread;
+package ru.mirea.kartyshovav.TwoThread;
 
 import org.junit.Test;
 

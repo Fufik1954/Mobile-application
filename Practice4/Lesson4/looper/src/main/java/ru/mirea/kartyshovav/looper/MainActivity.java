@@ -28,10 +28,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Устанавливаем текст
-        binding.editTextMirea.setText("Мой номер по списку №9");
-
-        // Handler для получения сообщений из MyLooper
+        // Handler - класс, который отправляет и обрабатывает сообщения в очередь (отвечает за организацию очереди)
+        // Looper - класс, который создаёт очередь сообщений для потока и крутит бесконечный цикл обработки
         Handler mainThreadHandler = new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message msg) {
@@ -40,11 +38,10 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        // Создаём и запускаем поток с Looper
+        // Запускаем фоновый поток
         MyLooper myLooper = new MyLooper(mainThreadHandler);
         myLooper.start();
 
-        // Обработчик кнопки
         binding.buttonMirea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

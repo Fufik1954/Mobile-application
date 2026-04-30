@@ -17,16 +17,18 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Пример установки требований (наличие интернета без тарификации и зарядка)
+        // Условия
         Constraints constraints = new Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.UNMETERED)
                 .setRequiresCharging(true)
                 .build();
 
+        // Задача
         WorkRequest uploadWorkRequest = new OneTimeWorkRequest.Builder(UploadWorker.class)
                 .setConstraints(constraints)
                 .build();
 
+        // Ставим задачу в очередь
         WorkManager.getInstance(this).enqueue(uploadWorkRequest);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

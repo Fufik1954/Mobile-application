@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.mirea.kartyshovav.thread"
+    namespace = "ru.mirea.kartyshovav.TwoThread"
     buildFeatures {
         viewBinding = true
     }
@@ -14,7 +14,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "ru.mirea.kartyshovav.thread"
+        applicationId = "ru.mirea.kartyshovav.TwoThread"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
