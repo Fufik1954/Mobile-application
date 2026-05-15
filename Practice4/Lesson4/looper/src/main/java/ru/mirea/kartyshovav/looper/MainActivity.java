@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Handler - класс, который отправляет и обрабатывает сообщения в очередь (отвечает за организацию очереди)
+        // Handler - класс, который обрабатывает сообщения в очереди
         // Looper - класс, который создаёт очередь сообщений для потока и крутит бесконечный цикл обработки
         Handler mainThreadHandler = new Handler(Looper.getMainLooper()) {
             @Override

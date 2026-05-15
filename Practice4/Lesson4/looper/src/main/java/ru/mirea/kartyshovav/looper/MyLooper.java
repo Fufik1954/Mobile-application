@@ -9,7 +9,7 @@ public class MyLooper extends Thread{
     public Handler mHandler;
     private Handler mainHandler;
 
-    // Сохраняем Handler главного потока, чтобы потом отправить результат обратно
+    // Сохраняем Handler главного потока
     public MyLooper(Handler mainThreadHandler) {
         mainHandler = mainThreadHandler;
     }

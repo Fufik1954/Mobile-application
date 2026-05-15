@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                     TimeUnit.SECONDS.sleep(1);
                     binding.tvInfo.postDelayed(runn3, 2000); // С задержкой
                     binding.tvInfo.post(runn2); // Отправляет задачу в очередь главного потока
-
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
