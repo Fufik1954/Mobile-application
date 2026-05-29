@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сервер времени"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp" />
+
+    <!-- TextView для отображения результата -->
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Нажмите кнопку"
+        android:textSize="18sp"
+        android:layout_marginBottom="32dp" />
+
+    <!-- Кнопка -->
+    <Button
+        android:id="@+id/buttonGetTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Получить время" />
+
+</LinearLayout>
